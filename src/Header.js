@@ -27,7 +27,7 @@ function Header() {
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink tag={Link} to="/generos">
-              Gênero
+              Gêneros
             </NavLink>
           </NavItem>
         </Nav>
