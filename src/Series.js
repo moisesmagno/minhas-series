@@ -3,17 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Alert, Button, ButtonGroup } from "reactstrap";
 
-function Generos() {
+function Series() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("api/genres").then(res => {
+    axios.get("api/series").then(res => {
       setData(res.data.data);
     });
   }, []);
 
-  const deleteGenres = id => {
-    axios.delete("/api/genres/" + id).then(res => {
+  const deleteSerie = id => {
+    axios.delete("/api/series/" + id).then(res => {
       const filterGenres = data.filter(item => item.id !== id);
       setData(filterGenres);
     });
@@ -26,10 +26,10 @@ function Generos() {
         <td>{record.name}</td>
         <td>
           <ButtonGroup>
-            <Button color="info" tag={Link} to={"/generos/" + record.id}>
-              Editar
+            <Button color="info" tag={Link} to={"/series/" + record.id}>
+              Info
             </Button>
-            <Button onClick={() => deleteGenres(record.id)} color="danger">
+            <Button onClick={() => deleteSerie(record.id)} color="danger">
               Excluir
             </Button>
           </ButtonGroup>
@@ -41,13 +41,13 @@ function Generos() {
   if (data.length === 0) {
     return (
       <div className="container">
-        <h1>Gêneros</h1>
-        <Button outline color="primary" tag={Link} to="/generos/novo">
-          Novo Gênero
+        <h1>Séries</h1>
+        <Button outline color="primary" tag={Link} to="/series/novo">
+          Nova Série
         </Button>
         <br />
         <br />
-        <Alert color="warning">Você não possui nenhum Gênero registrado!</Alert>
+        <Alert color="warning">Você não possui nenhuma série registrada!</Alert>
       </div>
     );
   }
@@ -55,9 +55,9 @@ function Generos() {
   return (
     <div className="container">
       <div>
-        <h1>Generos</h1>
-        <Button outline color="primary" tag={Link} to="/generos/novo">
-          Novo Gênero
+        <h1>Séries</h1>
+        <Button outline color="primary" tag={Link} to="/series/novo">
+          Nova Série
         </Button>
         <br />
         <br />
@@ -76,4 +76,4 @@ function Generos() {
   );
 }
 
-export default Generos;
+export default Series;
